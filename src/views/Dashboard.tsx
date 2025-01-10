@@ -1,12 +1,5 @@
-import {
-  faCircleXmark,
-  faGear,
-  faUpRightAndDownLeftFromCenter,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import styled, { keyframes } from "styled-components";
-import PriceChart from "../components/PriceChart";
+import styled from "styled-components";
 import { Tab, TimeFrame } from "../types";
 import BtcCard from "../components/BtcCard";
 import Label from "../components/Label";

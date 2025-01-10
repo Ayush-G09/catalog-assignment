@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled, { ThemeProvider } from "styled-components";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
+import { generateTheme } from "./theme";
+import { Mode } from "./types";
 
 function App() {
+  const mode = useSelector((state: RootState) => state.mode) as Mode;
+  const currentTheme = generateTheme(mode);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={currentTheme}>
+      <Root>
+        <RouterProvider router={router} />
+      </Root>
+    </ThemeProvider>
   );
 }
+
+const Root = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: ${(p) => p.theme.primary};
+  transition: background-color 0.3s, transform 0.3s;
+`;
 
 export default App;

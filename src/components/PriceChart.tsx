@@ -167,7 +167,7 @@ const PriceChart = ({ chartData, volumeData }: Props) => {
     <Container>
       <ReactECharts ref={chartRef} option={option} />
       {lastPointPosition && (
-        <Label $top={lastPointPosition[1]} $left={lastPointPosition[0] + 50}>
+        <Label style={{top: lastPointPosition[1], left: lastPointPosition[0] + 50}}>
           {chartData[chartData.length - 1].price.toFixed(2)}
         </Label>
       )}
@@ -181,10 +181,8 @@ const Container = styled.div`
   position: relative;
 `;
 
-const Label = styled.div<{ $left: number; $top: number }>`
+const Label = styled.div`
   position: absolute;
-  top: ${(P) => P.$top};
-  left: ${(P) => P.$left};
   background: #4b40ee;
   padding: 5px 10px;
   border-radius: 5px;
